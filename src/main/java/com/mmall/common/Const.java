@@ -11,6 +11,10 @@ public class Const {
 
     public static final String USERNAME = "username";
 
+    public static final String FTP_SERVER_HTTP_PREFIX = "ftp.server.http.prefix";
+
+    public static final String DEFAULT_FTP_SERVER_HTTP_PREFIX = "http://img.happymmall.com/";
+
 
 
     public interface Role {

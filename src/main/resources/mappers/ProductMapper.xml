@@ -161,7 +161,7 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.mmall.pojo.Product" >
+  selectProductList<update id="updateByPrimaryKey" parameterType="com.mmall.pojo.Product" >
     update mmall_product
     set category_id = #{categoryId,jdbcType=INTEGER},
       name = #{name,jdbcType=VARCHAR},
@@ -176,4 +176,11 @@
       update_time = now()
     where id = #{id,jdbcType=INTEGER}
   </update>
+  
+  <select id="selectProductList" resultMap="BaseResultMap">
+    select
+      <include refid="Base_Column_List"/>
+    from mmall_product
+    order by id asc
+  </select>
 </mapper>
