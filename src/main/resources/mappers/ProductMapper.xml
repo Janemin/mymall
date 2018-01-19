@@ -161,7 +161,7 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  selectProductList<update id="updateByPrimaryKey" parameterType="com.mmall.pojo.Product" >
+  <update id="updateByPrimaryKey" parameterType="com.mmall.pojo.Product" >
     update mmall_product
     set category_id = #{categoryId,jdbcType=INTEGER},
       name = #{name,jdbcType=VARCHAR},
@@ -183,4 +183,36 @@
     from mmall_product
     order by id asc
   </select>
+
+  <select id="selectByNameAndId" resultMap="BaseResultMap" parameterType="map">
+    select
+    <include refid="Base_Column_List"/>
+    from mmall_product
+    <where>
+      <if test="productId != null" >
+        and id = #{productId,jdbcType=INTEGER}
+      </if>
+      <if test="productName != null" >
+        and name like#{productName,jdbcType=VARCHAR}
+      </if>
+    </where>
+  </select>
+
+  <select id="selectByNameAndCategoryIds" resultMap="BaseResultMap" parameterType="map">
+    select
+    <include refid="Base_Column_List"/>
+    from mmall_product
+    where status = 1
+    <if test="categoryIdList != null" >
+        and id in
+      <foreach collection="categoryIdList" item="item" index="index" open="(" separator="," close=")">
+        #{item}
+      </foreach>
+    </if>
+    <if test="productName != null" >
+        and name like#{productName,jdbcType=VARCHAR}
+    </if>
+
+  </select>
+
 </mapper>
