@@ -39,6 +39,7 @@ public class PropertiesUtil {
         String value = props.getProperty(key.trim());
         if(StringUtils.isBlank(value)){
             value = defaultValue;
+            logger.error("Properties文件中取值为空，KEY为："+key);
         }
         return value.trim();
     }
