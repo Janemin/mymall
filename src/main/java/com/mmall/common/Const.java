@@ -29,7 +29,38 @@ public class Const {
 
     public static final String ALIPAY_CALLBACK_URL = "alipay.callback.url";
 
+    public static final String REDIS_SERVER_IP = "redis.server.ip";
 
+    public static final String REDIS_SERVER_PORT = "redis.server.port";
+
+    public static final String REDIS_MAX_TOTAL = "redis.max.total";
+
+    public static final String DEFAULT_REDIS_MAX_TOTAL = "20";
+
+    public static final String REDIS_MAX_IDLE = "redis.max.idle";
+
+    public static final String DEFAULT_REDIS_MAX_IDLE = "10";
+
+    public static final String REDIS_MIN_IDLE = "redis.min.idle";
+
+    public static final String DEFAULT_REDIS_MIN_IDLE = "2";
+
+    public static final String REDIS_TEST_BORROW = "redis.test.borrow";
+
+    public static final String DEFAULT_REDIS_TEST_BORROW = "true";
+
+    public static final String REDIS_TEST_RETURN = "redis.test.return";
+
+    public static final String DEFAULT_REDIS_TEST_RETURN  = "false";
+
+    public static final Integer FORGET_PASSWORD_RESET_TOKEN_EXPIRE = 3600;
+
+    public static final String TOKEN_PREFIX = "TOKEN_";
+
+
+    public interface RedisCacheExtime{
+        int REDIE_SESSION_TIME = 60*30;//30MIN
+    }
     public interface ProductListOrderBy{
         Set<String> PRICE_ASE_DESC = Sets.newHashSet("price_desc", "price_asc");
     }
