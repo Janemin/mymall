@@ -7,8 +7,7 @@ import com.mmall.pojo.User;
 import com.mmall.service.IUserService;
 import com.mmall.util.CookieUtil;
 import com.mmall.util.JsonUtil;
-import com.mmall.util.RedisPoolUtil;
-import com.sun.org.apache.bcel.internal.generic.IUSHR;
+import com.mmall.util.RedisShardedPoolUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -44,7 +43,7 @@ public class UserController {
         if (serverResponse.isSuccess()) {
 //            session.setAttribute(Const.CURRENT_USER, response.getData());
             CookieUtil.writeLoginToken(response, session.getId());
-            RedisPoolUtil.setEx(session.getId(), JsonUtil.objToString(serverResponse.getData()), Const.RedisCacheExtime.REDIE_SESSION_TIME);
+            RedisShardedPoolUtil.setEx(session.getId(), JsonUtil.objToString(serverResponse.getData()), Const.RedisCacheExtime.REDIE_SESSION_TIME);
         }
         return  serverResponse;
     }
@@ -61,7 +60,7 @@ public class UserController {
         //session.removeAttribute(Const.CURRENT_USER);
         String loginToken = CookieUtil.readLoginToken(request);
         CookieUtil.delLoginToken(request, response);
-        RedisPoolUtil.del(loginToken);
+        RedisShardedPoolUtil.del(loginToken);
         return  ServerResponse.createBySuccess();
     }
 
@@ -85,7 +84,7 @@ public class UserController {
         if(StringUtils.isEmpty(loginToken)){
             return ServerResponse.createByErrorCodeMessage(ResponseCode.NEED_LOGIN.getCode(), ResponseCode.NEED_LOGIN.getDesc());
         }
-        String userJsonStr = RedisPoolUtil.get(loginToken);
+        String userJsonStr = RedisShardedPoolUtil.get(loginToken);
         User user = JsonUtil.stringToObject(userJsonStr, User.class);
         if (user != null) {
             return ServerResponse.createBySuccess(user);
@@ -122,7 +121,7 @@ public class UserController {
         if(StringUtils.isEmpty(loginToken)){
             return ServerResponse.createByErrorCodeMessage(ResponseCode.NEED_LOGIN.getCode(), ResponseCode.NEED_LOGIN.getDesc());
         }
-        String userJsonStr = RedisPoolUtil.get(loginToken);
+        String userJsonStr = RedisShardedPoolUtil.get(loginToken);
         User user = JsonUtil.stringToObject(userJsonStr, User.class);
         if(user == null) {
             return ServerResponse.createByErrorCodeMessage(ResponseCode.NEED_LOGIN.getCode(), ResponseCode.NEED_LOGIN.getDesc());
@@ -138,7 +137,7 @@ public class UserController {
         if(StringUtils.isEmpty(loginToken)){
             return ServerResponse.createByErrorCodeMessage(ResponseCode.NEED_LOGIN.getCode(), ResponseCode.NEED_LOGIN.getDesc());
         }
-        String userJsonStr = RedisPoolUtil.get(loginToken);
+        String userJsonStr = RedisShardedPoolUtil.get(loginToken);
         User currentUser = JsonUtil.stringToObject(userJsonStr, User.class);
         if(currentUser == null) {
             return ServerResponse.createByErrorCodeMessage(ResponseCode.NEED_LOGIN.getCode(), ResponseCode.NEED_LOGIN.getDesc());
@@ -148,7 +147,7 @@ public class UserController {
         ServerResponse<User> serverResponse = iUserService.updateUserInfo(user);
         if (serverResponse.isSuccess()) {
             //session.setAttribute(Const.CURRENT_USER, response.getData());
-            RedisPoolUtil.setEx(loginToken, JsonUtil.objToString(serverResponse.getData()), Const.RedisCacheExtime.REDIE_SESSION_TIME);
+            RedisShardedPoolUtil.setEx(loginToken, JsonUtil.objToString(serverResponse.getData()), Const.RedisCacheExtime.REDIE_SESSION_TIME);
 
         }
         return serverResponse;
@@ -162,7 +161,7 @@ public class UserController {
         if(StringUtils.isEmpty(loginToken)){
             return ServerResponse.createByErrorCodeMessage(ResponseCode.NEED_LOGIN.getCode(), ResponseCode.NEED_LOGIN.getDesc());
         }
-        String userJsonStr = RedisPoolUtil.get(loginToken);
+        String userJsonStr = RedisShardedPoolUtil.get(loginToken);
         User user = JsonUtil.stringToObject(userJsonStr, User.class);
         if(user == null) {
             return ServerResponse.createByErrorCodeMessage(ResponseCode.NEED_LOGIN.getCode(), ResponseCode.NEED_LOGIN.getDesc());

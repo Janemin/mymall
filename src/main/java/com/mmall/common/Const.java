@@ -29,9 +29,13 @@ public class Const {
 
     public static final String ALIPAY_CALLBACK_URL = "alipay.callback.url";
 
-    public static final String REDIS_SERVER_IP = "redis.server.ip";
+    public static final String REDIS_SERVER_1_IP = "redis.server1.ip";
 
-    public static final String REDIS_SERVER_PORT = "redis.server.port";
+    public static final String REDIS_SERVER_1_PORT = "redis.server1.port";
+
+    public static final String REDIS_SERVER_2_IP = "redis.server2.ip";
+
+    public static final String REDIS_SERVER_2_PORT = "redis.server2.port";
 
     public static final String REDIS_MAX_TOTAL = "redis.max.total";
 

@@ -6,7 +6,7 @@ import com.mmall.pojo.User;
 import com.mmall.service.IUserService;
 import com.mmall.util.CookieUtil;
 import com.mmall.util.JsonUtil;
-import com.mmall.util.RedisPoolUtil;
+import com.mmall.util.RedisShardedPoolUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,7 +26,7 @@ public class UserManageController {
     @Autowired
     private IUserService iUserService;
 
-    @RequestMapping(value = "login.do", method = RequestMethod.POST)
+    @RequestMapping(value = "login.do", method = RequestMethod.GET)
     @ResponseBody
     public ServerResponse<User> login(String username, String password, HttpSession session, HttpServletResponse response){
         ServerResponse<User> serverResponse = iUserService.login(username, password);
@@ -35,7 +35,7 @@ public class UserManageController {
             if(user.getRole() == Const.Role.ROLE_ADMIN) {
                 //session.setAttribute(Const.CURRENT_USER, user);
                 CookieUtil.writeLoginToken(response, session.getId());
-                RedisPoolUtil.setEx(session.getId(), JsonUtil.objToString(serverResponse.getData()), Const.RedisCacheExtime.REDIE_SESSION_TIME);
+                RedisShardedPoolUtil.setEx(session.getId(), JsonUtil.objToString(serverResponse.getData()), Const.RedisCacheExtime.REDIE_SESSION_TIME);
                 return serverResponse;
             }else {
                 return ServerResponse.createByErrorMessage("不是管理员账号，无法登录");

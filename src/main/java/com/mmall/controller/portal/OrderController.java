@@ -11,7 +11,7 @@ import com.mmall.pojo.User;
 import com.mmall.service.IOrderService;
 import com.mmall.util.CookieUtil;
 import com.mmall.util.JsonUtil;
-import com.mmall.util.RedisPoolUtil;
+import com.mmall.util.RedisShardedPoolUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -50,7 +50,7 @@ public class OrderController {
             return ServerResponse.createByErrorCodeMessage(
                     ResponseCode.NEED_LOGIN.getCode(), ResponseCode.NEED_LOGIN.getDesc());
         }
-        String userJsonStr = RedisPoolUtil.get(loginToken);
+        String userJsonStr = RedisShardedPoolUtil.get(loginToken);
         User user = JsonUtil.stringToObject(userJsonStr, User.class);
         if(user == null) {
             return ServerResponse.createByErrorCodeMessage(
@@ -68,7 +68,7 @@ public class OrderController {
             return ServerResponse.createByErrorCodeMessage(
                     ResponseCode.NEED_LOGIN.getCode(), ResponseCode.NEED_LOGIN.getDesc());
         }
-        String userJsonStr = RedisPoolUtil.get(loginToken);
+        String userJsonStr = RedisShardedPoolUtil.get(loginToken);
         User user = JsonUtil.stringToObject(userJsonStr, User.class);
         if(user == null) {
             return ServerResponse.createByErrorCodeMessage(
@@ -86,7 +86,7 @@ public class OrderController {
             return ServerResponse.createByErrorCodeMessage(
                     ResponseCode.NEED_LOGIN.getCode(), ResponseCode.NEED_LOGIN.getDesc());
         }
-        String userJsonStr = RedisPoolUtil.get(loginToken);
+        String userJsonStr = RedisShardedPoolUtil.get(loginToken);
         User user = JsonUtil.stringToObject(userJsonStr, User.class);
         if(user == null) {
             return ServerResponse.createByErrorCodeMessage(
@@ -104,7 +104,7 @@ public class OrderController {
             return ServerResponse.createByErrorCodeMessage(
                     ResponseCode.NEED_LOGIN.getCode(), ResponseCode.NEED_LOGIN.getDesc());
         }
-        String userJsonStr = RedisPoolUtil.get(loginToken);
+        String userJsonStr = RedisShardedPoolUtil.get(loginToken);
         User user = JsonUtil.stringToObject(userJsonStr, User.class);
         if(user == null) {
             return ServerResponse.createByErrorCodeMessage(
@@ -124,7 +124,7 @@ public class OrderController {
             return ServerResponse.createByErrorCodeMessage(
                     ResponseCode.NEED_LOGIN.getCode(), ResponseCode.NEED_LOGIN.getDesc());
         }
-        String userJsonStr = RedisPoolUtil.get(loginToken);
+        String userJsonStr = RedisShardedPoolUtil.get(loginToken);
         User user = JsonUtil.stringToObject(userJsonStr, User.class);
         if(user == null) {
             return ServerResponse.createByErrorCodeMessage(
@@ -142,7 +142,7 @@ public class OrderController {
             return ServerResponse.createByErrorCodeMessage(
                     ResponseCode.NEED_LOGIN.getCode(), ResponseCode.NEED_LOGIN.getDesc());
         }
-        String userJsonStr = RedisPoolUtil.get(loginToken);
+        String userJsonStr = RedisShardedPoolUtil.get(loginToken);
         User user = JsonUtil.stringToObject(userJsonStr, User.class);
         if(user == null) {
             return ServerResponse.createByErrorCodeMessage(
@@ -201,7 +201,7 @@ public class OrderController {
             return ServerResponse.createByErrorCodeMessage(
                     ResponseCode.NEED_LOGIN.getCode(), ResponseCode.NEED_LOGIN.getDesc());
         }
-        String userJsonStr = RedisPoolUtil.get(loginToken);
+        String userJsonStr = RedisShardedPoolUtil.get(loginToken);
         User user = JsonUtil.stringToObject(userJsonStr, User.class);
         if(user == null) {
             return ServerResponse.createByErrorCodeMessage(

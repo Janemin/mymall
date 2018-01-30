@@ -22,9 +22,9 @@ public class RedisPool {
     //return Jedis实例时，是否进行验证操作，赋值为true，则放回连接池的Jedis实例可用
     private static Boolean testOnReturn = Boolean.parseBoolean(PropertiesUtil.getProperty(Const.REDIS_TEST_RETURN, Const.DEFAULT_REDIS_TEST_RETURN));
 
-    private static String redisIp = PropertiesUtil.getProperty(Const.REDIS_SERVER_IP);
+    private static String redisIp = PropertiesUtil.getProperty(Const.REDIS_SERVER_1_IP);
 
-    private static Integer redisPort = Integer.parseInt(PropertiesUtil.getProperty(Const.REDIS_SERVER_PORT));
+    private static Integer redisPort = Integer.parseInt(PropertiesUtil.getProperty(Const.REDIS_SERVER_1_PORT));
 
     private static Integer redisTimeout = 1000*2;
 
