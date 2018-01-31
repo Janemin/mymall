@@ -194,4 +194,11 @@ public class Const {
             throw new RuntimeException("没有找到对应的枚举（PaymentTypeEnum）");
         }
     }
+
+    public interface REDIS_LOCK{
+        //关闭订单的分布式锁
+        String CLOSE_ORDER_TASK_LOCK = "CLOSE_ORDER_TASK_LOCK";
+
+    }
+
 }
