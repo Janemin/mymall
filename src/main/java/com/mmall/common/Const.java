@@ -29,7 +29,42 @@ public class Const {
 
     public static final String ALIPAY_CALLBACK_URL = "alipay.callback.url";
 
+    public static final String REDIS_SERVER_1_IP = "redis.server1.ip";
 
+    public static final String REDIS_SERVER_1_PORT = "redis.server1.port";
+
+    public static final String REDIS_SERVER_2_IP = "redis.server2.ip";
+
+    public static final String REDIS_SERVER_2_PORT = "redis.server2.port";
+
+    public static final String REDIS_MAX_TOTAL = "redis.max.total";
+
+    public static final String DEFAULT_REDIS_MAX_TOTAL = "20";
+
+    public static final String REDIS_MAX_IDLE = "redis.max.idle";
+
+    public static final String DEFAULT_REDIS_MAX_IDLE = "10";
+
+    public static final String REDIS_MIN_IDLE = "redis.min.idle";
+
+    public static final String DEFAULT_REDIS_MIN_IDLE = "2";
+
+    public static final String REDIS_TEST_BORROW = "redis.test.borrow";
+
+    public static final String DEFAULT_REDIS_TEST_BORROW = "true";
+
+    public static final String REDIS_TEST_RETURN = "redis.test.return";
+
+    public static final String DEFAULT_REDIS_TEST_RETURN  = "false";
+
+    public static final Integer FORGET_PASSWORD_RESET_TOKEN_EXPIRE = 3600;
+
+    public static final String TOKEN_PREFIX = "TOKEN_";
+
+
+    public interface RedisCacheExtime{
+        int REDIE_SESSION_TIME = 60*30;//30MIN
+    }
     public interface ProductListOrderBy{
         Set<String> PRICE_ASE_DESC = Sets.newHashSet("price_desc", "price_asc");
     }
@@ -159,4 +194,11 @@ public class Const {
             throw new RuntimeException("没有找到对应的枚举（PaymentTypeEnum）");
         }
     }
+
+    public interface REDIS_LOCK{
+        //关闭订单的分布式锁
+        String CLOSE_ORDER_TASK_LOCK = "CLOSE_ORDER_TASK_LOCK";
+
+    }
+
 }
